@@ -1,3 +1,62 @@
 body {
-  background-color: aquamarine;
+  font-family: SF Optimized, system-ui, -apple-system, BlinkMacSystemFont,
+    ".SFNSText-Regular", sans-serif;
+  background-color: #e9ebee;
+  margin: 0;
+}
+
+header {
+  width: 100%;
+  background-color: #4267b2;
+  border-bottom: 1px solid #29487d;
+  color: white;
+}
+
+header .header-center {
+  max-width: 1012px;
+  margin: auto;
+  display: flex;
+}
+
+header .head-title {
+  flex: 1;
+  margin: 0;
+  padding: 8px 12px;
+  letter-spacing: -0.01em;
+}
+
+header .head-right {
+  margin: 4px 12px 4px 0;
+  padding: 8px;
+}
+
+button.head-button {
+  border: none;
+  margin: 0 10px;
+  padding: 8px;
+  font-size: 14px;
+  color: white;
+  overflow: visible;
+  background: transparent;
+  line-height: normal;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+main {
+  width: 800px;
+  margin: 0 auto;
+  padding-top: 12px;
+}
+
+.post {
+  background-color: white;
+  color: #1d2129;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 1px solid;
+  border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+  border-radius: 4px;
 }

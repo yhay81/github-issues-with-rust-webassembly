@@ -104,18 +104,21 @@ where
     fn view(&self) -> Html<CTX, Self> {
         html! {
             <div>
-                <h1>{"GitHub Issue"}</h1>
-                <div class="menu",>
-                    // <input type="text", value=&self.owner, oninput=|e| Msg::UpdateOwner(e.value), />
+            <header>
+            <div class="header-center",>
+                <h1 class="head-title",>{"GitHub Issues"}</h1>
+                <div class="head-right",>
                     <input type="text", value=&self.owner, oninput=|e: InputData| Msg::UpdateOwner(e.value), />
                     <span>{" / "}</span>
-                    // <input type="text", value=&self.repo, oninput=|e| Msg::UpdateRepo(e.value), />
                     <input type="text", value=&self.repo, oninput=|e: InputData| Msg::UpdateRepo(e.value), />
-                    <button onclick=|_| Msg::FetchData(),>{ "Fetch Issues" }</button>
+                    <button class="head-button", onclick=|_| Msg::FetchData(),>{ "Fetch Issues" }</button>
                 </div>
-                <div>
-                { self.view_data() }
-                </div>
+            </div>
+            </header>
+
+            <main>
+            { self.view_data() }
+            </main>
             </div>
         }
     }
@@ -128,17 +131,17 @@ impl Model {
     {
         let view_issue = |issue: &Issue| {
             html! {
-                <li>
-                <h2>{ &issue.title }</h2>
-                <div>{ &issue.body }</div>
-                <div>{ &issue.state }</div>
-                </li>
+                <div class="post", >
+                    <h2>{ &issue.title }</h2>
+                    <div class="issue-content",>{ &issue.body }</div>
+                    <div class="issue-state",>{ &issue.state }</div>
+                </div>
             }
         };
         html! {
-            <ul>
-                { for self.data.iter().map(view_issue) }
-            </ul>
+            <div class="issues", >
+            { for self.data.iter().map(view_issue) }
+            </div>
         }
     }
 }
