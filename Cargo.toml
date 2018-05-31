@@ -1,0 +1,11 @@
+[package]
+name = "github_issues_with_rust_webassembly"
+version = "0.1.0"
+authors = ["Yusuke Hayashi <yusuke8h@gmail.com>"]
+
+[dependencies]
+failure = "0.1"
+yew = "0.3.0"
+serde = "1"
+serde_derive = "1"
+serde_json = "1.0"
