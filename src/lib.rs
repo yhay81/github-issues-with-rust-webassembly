@@ -10,7 +10,8 @@ use yew::format::{Json, Nothing};
 use yew::prelude::*;
 use yew::services::fetch::{FetchService, FetchTask, Request, Response};
 
-extern crate serde_json;
+extern crate comrak;
+use comrak::{markdown_to_html, ComrakOptions};
 
 pub struct Model {
     fetching: bool,
@@ -133,7 +134,8 @@ impl Model {
             html! {
                 <div class="post", >
                     <h2>{ &issue.title }</h2>
-                    <div class="issue-content",>{ &issue.body }</div>
+                    // <div class="issue-content",>{ &issue.body }</div>
+                    <div class="issue-content",>{ markdown_to_html(&issue.body, &ComrakOptions::default()) }</div>
                     <div class="issue-state",>{ &issue.state }</div>
                 </div>
             }
