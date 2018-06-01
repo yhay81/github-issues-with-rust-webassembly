@@ -37,7 +37,7 @@ pub struct Issue {
     state: String,
     number: u32,
     comments: u32,
-    html_url: String,
+    url: String,
 }
 
 impl<CTX> Component<CTX> for Model
@@ -154,7 +154,7 @@ impl Model {
         let view_issue = |issue: &Issue| {
             html! {
                 <div class="post", >
-                    <h2>{ show_state(&issue.state) }<a href=issue.html_url.to_string(), >{ " #" }{ issue.number }{" "}{ &issue.title }</a></h2>
+                    <h2>{ show_state(&issue.state) }<a href=issue.url.to_string(), >{ " #" }{ issue.number }{" "}{ &issue.title }</a></h2>
                     { show_comments(issue.comments) }
                     <div class="issue-content",>{ markdown_to_html(&issue.body, &ComrakOptions::default()) }</div>
                 </div>
