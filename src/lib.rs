@@ -35,6 +35,9 @@ pub struct Issue {
     title: String,
     body: String,
     state: String,
+    number: u32,
+    comments: u32,
+    html_url: String,
 }
 
 impl<CTX> Component<CTX> for Model
@@ -130,13 +133,30 @@ impl Model {
     where
         CTX: AsMut<FetchService> + 'static,
     {
+        let show_comments = |comments| {
+            if comments > 0 {
+                html! {
+                    <div class="comments",>
+                    <i class=("far", "fa-comments"), ></i>
+                    { comments }
+                    </div>
+                }
+            } else {
+                html! {
+                    <div />
+                }
+            }
+        };
+        let show_state = |state: &str| match state {
+            "open" => html!{<i class=("fas","fa-code-branch","open"), ></i>},
+            _ => html!{<i class=("fas","fa-code-branch", "close"), ></i>},
+        };
         let view_issue = |issue: &Issue| {
             html! {
                 <div class="post", >
-                    <h2>{ &issue.title }</h2>
-                    // <div class="issue-content",>{ &issue.body }</div>
+                    <h2>{ show_state(&issue.state) }<a href=issue.html_url.to_string(), >{ " #" }{ issue.number }{" "}{ &issue.title }</a></h2>
+                    { show_comments(issue.comments) }
                     <div class="issue-content",>{ markdown_to_html(&issue.body, &ComrakOptions::default()) }</div>
-                    <div class="issue-state",>{ &issue.state }</div>
                 </div>
             }
         };
